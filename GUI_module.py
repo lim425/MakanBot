@@ -15,7 +15,7 @@ class GUI():
         offset = offset * self.scale_x     # offset (horizontal & vertical) between each button
         offset1 = offset1 * self.scale_y    # offset between gui box and the promt display
         offset2 = offset2 * self.scale_y    # offset between promt display and finish button
-        offset3 = offset3 * self.scale_y   # height of the self.next_selection_button self.end_button
+        offset3 = offset3 * self.scale_y   # height of the self.next_selection_button self.home_button
         offset4 = offset4 * self.scale_y    # offset between finsih_eat_button and self.buttonA,B,C
         offset5 = offset5 * self.scale_y    # height of the button A-I
         offset6 = offset6 * self.scale_y    # offset between self.buttonG,H,I and progress bar
@@ -25,7 +25,7 @@ class GUI():
         self.gui_box = (self.frame_width//2, 0, self.frame_width, self.frame_height)
         self.prompt_display = (self.gui_box[0]+offset1, offset1, self.gui_box[2]-offset1, self.gui_box[3]//4)
         self.next_selection_button = (self.prompt_display[0], (self.prompt_display[3])+offset2, (((self.prompt_display[2]-self.prompt_display[0])//4)+offset8)+self.prompt_display[0], (self.prompt_display[3])+offset3)
-        self.end_button = (self.next_selection_button[2]+offset, (self.prompt_display[3])+offset2, (((self.prompt_display[2]-self.prompt_display[0])//4)+offset8)+self.next_selection_button[2]+offset, (self.prompt_display[3])+offset3)
+        self.home_button = (self.next_selection_button[2]+offset, (self.prompt_display[3])+offset2, (((self.prompt_display[2]-self.prompt_display[0])//4)+offset8)+self.next_selection_button[2]+offset, (self.prompt_display[3])+offset3)
         self.buttonA = (self.next_selection_button[0], self.next_selection_button[3]+offset4, self.next_selection_button[2], self.next_selection_button[3]+offset4+offset5)
         self.buttonB = (self.buttonA[2]+offset, self.buttonA[1], (((self.prompt_display[2]-self.prompt_display[0])//4)+offset8)+self.buttonA[2]+offset, self.buttonA[3])
         self.buttonC = (self.buttonB[2]+offset, self.buttonB[1], (((self.prompt_display[2]-self.prompt_display[0])//4)+offset8)+self.buttonB[2]+offset, self.buttonB[3])
@@ -37,7 +37,7 @@ class GUI():
         self.buttonI=(self.buttonF[0], self.buttonF[3]+offset, self.buttonF[2], self.buttonF[3]+offset+offset5)
         self.progress_bar = (self.prompt_display[0], self.buttonG[3]+offset6, self.prompt_display[2], self.buttonG[3]+offset6+offset7)
 
-        gui_position_boundaries = [self.gui_box, self.prompt_display, self.next_selection_button , self.end_button, self.buttonA, self.buttonB, self.buttonC, self.buttonD, self.buttonE, self.buttonF, self.buttonG, self.buttonH, self.buttonI, self.progress_bar]
+        gui_position_boundaries = [self.gui_box, self.prompt_display, self.next_selection_button , self.home_button, self.buttonA, self.buttonB, self.buttonC, self.buttonD, self.buttonE, self.buttonF, self.buttonG, self.buttonH, self.buttonI, self.progress_bar]
         return gui_position_boundaries
 
 
@@ -48,7 +48,7 @@ class GUI():
         cv2.rectangle(img, (int(self.prompt_display[0]), int(self.prompt_display[1])), (int(self.prompt_display[2]), int(self.prompt_display[3])), (61, 212, 207), -1)
         # Function button
         cv2.rectangle(img, (int(self.next_selection_button[0]), int(self.next_selection_button[1])), (int(self.next_selection_button[2]), int(self.next_selection_button[3])), (104, 212, 61), -1)
-        cv2.rectangle(img, (int(self.end_button[0]), int(self.end_button[1])), (int(self.end_button[2]), int(self.end_button[3])), (61, 61, 212), -1)
+        cv2.rectangle(img, (int(self.home_button[0]), int(self.home_button[1])), (int(self.home_button[2]), int(self.home_button[3])), (61, 61, 212), -1)
         # Progress Bar
         cv2.rectangle(img, (int(self.progress_bar[0]), int(self.progress_bar[1])), (int(self.progress_bar[2]), int(self.progress_bar[3])), (70, 62, 57), -1)
         # Buttons
@@ -63,7 +63,7 @@ class GUI():
         cv2.rectangle(img, (int(self.buttonI[0]), int(self.buttonI[1])), (int(self.buttonI[2]), int(self.buttonI[3])), (196, 186, 173), -1)
 
         self.drawTextCenter(img, "NEXT", self.next_selection_button)
-        self.drawTextCenter(img, "END", self.end_button)
+        self.drawTextCenter(img, "HOME", self.home_button)
         self.drawTextCenter(img, "A", self.buttonA)
         self.drawTextCenter(img, "B", self.buttonB)
         self.drawTextCenter(img, "C", self.buttonC)
@@ -72,7 +72,7 @@ class GUI():
         self.drawTextCenter(img, "F", self.buttonF)
         self.drawTextCenter(img, "G", self.buttonG)
         self.drawTextCenter(img, "H", self.buttonH)
-        self.drawTextCenter(img, "I", self.buttonI)
+        self.drawTextCenter(img, "J", self.buttonI)
 
 
     def drawTextCenter(self, img, text, box, font=cv2.FONT_HERSHEY_SIMPLEX, font_scale=1, color=(72, 52, 33), thickness=3):

@@ -33,8 +33,8 @@ void loop() {
       case 'H':
         Serial.println("Received: H");
         break;
-      case 'I':
-        Serial.println("Received: I");
+      case 'J':
+        Serial.println("Received: J");
         break;
       case 'X':
         Serial.println("Received: X");

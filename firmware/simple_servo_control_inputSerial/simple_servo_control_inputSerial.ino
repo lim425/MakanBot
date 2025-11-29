@@ -15,8 +15,9 @@ struct ServoData {
 ServoData servos[] = {
   {"BASE", 0, 120, 570, 90},
   {"SHOULDER", 1, 130, 600, 180},
-  {"ELBOW", 2, 280, 620, 20},
-  {"WRIST", 3, 140, 600, 0},
+  {"ELBOW", 2, 280, 620, 5},
+  {"WRIST", 3, 140, 600, 90},
+  {"GRIPPER", 4, 125, 600, 0},
   
 };
 
@@ -67,6 +68,7 @@ void setup() {
 void loop() {
   if (Serial.available()) {
     String input = Serial.readStringUntil('\n'); // read until newline
+    Serial.println(input);
     input.trim(); // remove spaces/newlines
 
     if (input.length() > 0) {
@@ -97,8 +99,7 @@ void loop() {
       Serial.print(targetAngle);
       Serial.println("°");
 
-      moveServo(channel, targetAngle, 50);
-      Serial.println("✅ Done.");
+      moveServo(channel, targetAngle, 25);
     }
   }
 }

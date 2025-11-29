@@ -7,6 +7,7 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 // Shoulder: min=130 (0), max=600(180)
 // Elbow: min=280 (0), max=620(180)
 // Wrist: min=140 (0), max=600(180)
+// Gripper: min=125 (0), max=600(180)
 
 
 // Start with safe range for 180° servo
