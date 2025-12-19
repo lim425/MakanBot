@@ -15,7 +15,7 @@ struct ServoData {
 ServoData servos[] = {
   {"BASE", 0, 120, 570, 90},
   {"SHOULDER", 1, 130, 600, 180},
-  {"ELBOW", 2, 280, 620, 5},
+  {"ELBOW", 2, 110, 590, 0},
   {"WRIST", 3, 140, 600, 90},
   {"GRIPPER", 4, 125, 600, 0},
   

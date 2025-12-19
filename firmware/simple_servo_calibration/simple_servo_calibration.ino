@@ -5,7 +5,7 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
 // Base: min=120 (0), max=570(180)
 // Shoulder: min=130 (0), max=600(180)
-// Elbow: min=280 (0), max=620(180)
+// Elbow: min=120 (0), max=590(180)
 // Wrist: min=140 (0), max=600(180)
 // Gripper: min=125 (0), max=600(180)
 

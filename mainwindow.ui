@@ -21,7 +21,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="manual_tab">
        <attribute name="title">
@@ -404,17 +404,18 @@
             <item>
              <widget class="QPlainTextEdit" name="text_command_sheet">
               <property name="plainText">
-               <string>Selection Option:
-&gt; A, B, C, D, E, F, G, H, J
-&gt; HOME
-&gt; NEXT
-&gt; FINISH
+               <string>Voice Command Guide
+
+Commands:
+• “Pick / Take / Get” &gt; Pick up food
+• “Feed / Send” &gt; Bring food to your mouth
+• “Home” &gt; Move robotic arm to home position
+• “Finish” &gt; Finish eating
+• “Head” &gt; Switch to head-control mode
 
 Confirmation:
-&gt; YES, YUP, YEAH
-&gt; NO, NOPE, NAH
-
-
+• &quot;Yes&quot; &gt; yes, yeah, yep, yup, sure
+• &quot;No&quot;&gt; no, nope, nah
 </string>
               </property>
              </widget>

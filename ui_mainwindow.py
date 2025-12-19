@@ -328,7 +328,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -362,17 +362,18 @@ class Ui_MainWindow(object):
         self.label_voice_status.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.text_voice_log.setPlainText("")
         self.text_voice_input.setPlainText("")
-        self.text_command_sheet.setPlainText(QCoreApplication.translate("MainWindow", u"Selection Option:\n"
-"> A, B, C, D, E, F, G, H, J\n"
-"> HOME\n"
-"> NEXT\n"
-"> FINISH\n"
+        self.text_command_sheet.setPlainText(QCoreApplication.translate("MainWindow", u"Voice Command Guide\n"
+"\n"
+"Commands:\n"
+"\u2022 \u201cPick / Take / Get\u201d > Pick up food\n"
+"\u2022 \u201cFeed / Send\u201d > Bring food to your mouth\n"
+"\u2022 \u201cHome\u201d > Move robotic arm to home position\n"
+"\u2022 \u201cFinish\u201d > Finish eating\n"
+"\u2022 \u201cHead\u201d > Switch to head-control mode\n"
 "\n"
 "Confirmation:\n"
-"> YES, YUP, YEAH\n"
-"> NO, NOPE, NAH\n"
-"\n"
-"\n"
+"\u2022 \"Yes\" > yes, yeah, yep, yup, sure\n"
+"\u2022 \"No\"> no, nope, nah\n"
 "", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.voice_tab), QCoreApplication.translate("MainWindow", u"Voice Control", None))
     # retranslateUi

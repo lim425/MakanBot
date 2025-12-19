@@ -40,19 +40,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.current_waypoints = []
         self.step_index = 0
         self.waypoints = {
-            "A": [
-                [0, 160, 100, 180, 90],
-                [0, 120, 100, 180, 0], 
-                [0, 160, 100, 90, 0]   
+            "PICK": [
+                [90, 180, 50, 90, 0],
+                [90, 110, 65, 50, 0], 
+                [90, 75, 60, 5, 0],
+                [90, 50, 45, 5, 0],
             ],
-            "B": [
-                [60, 160, 100, 180, 90],
-                [0, 120, 100, 180, 0],
-                [0, 160, 100, 90, 0] 
+            "FEED": [
+                [90, 50, 45, 5, 0],
+                [90, 100, 55, 35, 0],
+                [90, 120, 50, 35, 0],
+                [120, 120, 50, 55, 0]  
             ],
             "HOME": [
                 [90, 130, 90, 90, 0],
-                [90, 180, 5, 90, 0] 
+                [90, 180, 0, 90, 0] 
             ]
         }
 
@@ -93,15 +95,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     
     # Tab Switching Logic
     def on_tab_changed(self, index):
-        HEAD_GESTURE_INDEX = 1 
-        VOICE_CONTROL_INDEX = 2
-
-        if index == HEAD_GESTURE_INDEX:
+        # index 0: manual control, 1: head control, 2: voice control
+        if index == 1:
             self.start_camera()
         else:
             self.stop_camera()
 
-        if index == VOICE_CONTROL_INDEX:
+        if index == 2:
             self.start_voice()
         else:
             self.stop_voice()
@@ -125,7 +125,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.execute_next_step()
             # Start the timer for the remaining steps
             self.sequence_timer.start()
-
+        elif command == "HEAD":
+            self.tabWidget.setCurrentIndex(1)
+            self.on_tab_changed(1)
+        elif command == "VOICE":
+            self.tabWidget.setCurrentIndex(2)
+            self.on_tab_changed(2)
         elif command == "FINISH":
             self.sequence_timer.stop()
             self.stop_camera()

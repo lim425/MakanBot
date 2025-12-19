@@ -19,18 +19,11 @@ class VoiceThread(QThread):
 
         # Format: "SPOKEN WORD" : "COMMAND CODE"
         self.command_map = {
-            "A": "A", "HEY": "A", "AY": "A",
-            "B": "B", "BEE": "B", "BE": "B", "BI": "B",
-            "C": "C", "SEE": "C", "SEA": "C", "SI": "C",
-            "D": "D", "DEE": "D", "THE": "D",
-            "E": "E",
-            "F": "F",
-            "G": "G", "GEE": "G", "JI": "G",
-            "H": "H",
-            "J": "J", "JAY": "J",
-            "NEXT": "NEXT",
+            "PICK": "PICK", "PEAK": "PICK", "GET": "PICK", "TAKE": "PICK",
+            "FEED": "FEED","SEND": "FEED", 
             "HOME": "HOME",
-            "FINISH": "FINISH", "FINISHED": "FINISH"
+            "FINISH": "FINISH", "FINISHED": "FINISH",
+            "HEAD": "HEAD", "CAMERA": "HEAD"
         }
 
         self.confirm_map = {
@@ -61,10 +54,10 @@ class VoiceThread(QThread):
                 continue
 
             # ACTIVE MODE
-            self.speak("Please select a food letter, or Next or Finish.")
+            self.speak("How can I help you?")
             
-            food_selected = False
-            while not food_selected and self._is_running:
+            selection = False
+            while not selection and self._is_running:
                 self.update_status("Listening for Command...")
                 
                 # Step 1: Listen for selection
@@ -76,12 +69,28 @@ class VoiceThread(QThread):
 
                 if not cmd:
                     if text: 
-                        self.speak("I didn't catch that. Please say a letter.")
+                        self.speak("I didn't catch that. Please say again.")
                     continue 
 
+                # Prompt
+                if cmd == "PICK":
+                    prompt1 = "Are you sure you want to pick up the food?"
+                    prompt2 = "Okay, picking up the food..."
+                elif cmd == "FEED":
+                    prompt1 = "Are you sure you want to bring the food to your mouth?"
+                    prompt2 = "Okay, sending the food to you..."
+                elif cmd == "HOME":
+                    prompt1 = "Are you sure you want the robotic arm to return to the home position?"
+                    prompt2 = "Okay, robotic arm returning to home position..."
+                elif cmd == "FINISH":
+                    prompt1 = "Are you sure you want to finish eating?"
+                    prompt2 = "Okay, Stopping voice control system..."
+                elif cmd == "HEAD":
+                    prompt1 = "Are you sure you want to switch to head control mode?"
+                    prompt2 = "Okay, Switching to head control system..."
+
                 # Step 2: Ask Confirmation
-                prompt = f"Are you sure you want to select {cmd}?"
-                self.speak(prompt)
+                self.speak(prompt1)
 
                 # Step 3: Listen for Confirmation
                 self.update_status("Waiting for Confirmation...")
@@ -89,9 +98,9 @@ class VoiceThread(QThread):
                 confirmation_answer = self.confirmation(confirmation_text)
 
                 if confirmation_answer == "YES":
-                    self.speak(f"Confirmed. You selected {cmd}.")
+                    self.speak(prompt2)
                     self.command_signal.emit(cmd)
-                    food_selected = True # Return to standby
+                    selection = True # Return to standby
                 elif confirmation_answer == "NO":
                     self.speak("Okay, please select again.")
                 else:
