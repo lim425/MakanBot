@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>images/minus_.png</file>
+    <file>images/plus.png</file>
+    <file>images/robotic arm idp.png</file>
+  </qresource>
+</RCC>

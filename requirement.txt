@@ -1,4 +1,0 @@
-pip install opencv
-pip install mediapipe
-pip install SpeechRecognition
-pip install pyttsx3

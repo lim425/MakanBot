@@ -1,7 +1,0 @@
-<RCC>
-  <qresource>
-    <file>images/robot_arm.jpg</file>
-    <file>images/plus.png</file>
-    <file>images/minus_.png</file>
-  </qresource>
-</RCC>
